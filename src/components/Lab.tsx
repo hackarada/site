@@ -1,4 +1,4 @@
-import { artifacts } from "@/data/content";
+import { artifactActionLabel, artifacts } from "@/data/content";
 
 export function Lab() {
   return (
@@ -14,8 +14,8 @@ export function Lab() {
             </h2>
           </div>
           <p className="max-w-sm text-sm leading-relaxed text-ash">
-            Public work that still maps to how I operate: pipeline owner-routing, local-first capture,
-            and unattended research loops.
+            Public work that still maps to how I operate: local-first capture, research loops,
+            and agent tooling.
           </p>
         </div>
 
@@ -40,7 +40,7 @@ export function Lab() {
               <p className="mt-1 font-mono text-[11px] tracking-[0.08em] text-ash">{item.stack}</p>
               <p className="mt-4 flex-1 text-sm leading-relaxed text-mist">{item.summary}</p>
               <p className="mt-6 font-mono text-[11px] tracking-[0.18em] text-phosphor uppercase">
-                Open on GitHub
+                {artifactActionLabel(item.kind)}
               </p>
             </a>
           ))}

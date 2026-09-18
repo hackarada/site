@@ -13,36 +13,30 @@ export function Signal() {
           </h2>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-mist">
             I work with engineering, platform, product, and legal teams on systems that cannot
-            afford a leaky trust model. If you are building something high-stakes, send a signal.
+            afford a leaky trust model. If you are building something high-stakes, find me on
+            LinkedIn or GitHub.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a
-              href={`mailto:${profile.email}`}
-              className="rounded-full bg-phosphor px-6 py-3 text-sm font-medium text-void transition hover:bg-silver"
-            >
-              {profile.email}
-            </a>
-            <a
-              href={profile.resume}
-              className="rounded-full border border-line px-6 py-3 text-sm text-silver transition hover:border-phosphor/50 hover:text-phosphor"
-            >
-              Download resume
-            </a>
-          </div>
-          <div className="mt-8 flex gap-6 font-mono text-xs tracking-[0.18em] text-ash uppercase">
-            <a href={profile.github} className="hover:text-phosphor" target="_blank" rel="noreferrer">
-              GitHub
-            </a>
-            <a
               href={profile.linkedin}
-              className="hover:text-phosphor"
               target="_blank"
               rel="noreferrer"
+              className="rounded-full bg-phosphor px-6 py-3 text-sm font-medium text-void transition hover:bg-silver"
             >
               LinkedIn
             </a>
-            <span>{profile.location}</span>
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-line px-6 py-3 text-sm text-silver transition hover:border-phosphor/50 hover:text-phosphor"
+            >
+              GitHub
+            </a>
           </div>
+          <p className="mt-8 font-mono text-xs tracking-[0.18em] text-ash uppercase">
+            {profile.location}
+          </p>
         </div>
 
         <div className="space-y-4">

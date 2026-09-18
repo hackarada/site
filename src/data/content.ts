@@ -43,10 +43,8 @@ export const profile = {
   role: "Senior Staff Security Engineer",
   studio: "Disney Studios · Content Security",
   location: "Los Angeles",
-  email: "",
   linkedin: "https://www.linkedin.com/in/hackarada",
   github: "https://github.com/hackarada",
-  resume: `${import.meta.env.BASE_URL}Ermias_resume.pdf`,
   headline: "Security for products, clouds, and unreleased worlds.",
   lede:
     "I design the trust models behind applications, distributed platforms, and high-sensitivity content — then stand up the teams, pipelines, and tooling that keep those models alive after the review ends.",
@@ -187,6 +185,8 @@ export const productions: Production[] = [
   },
 ];
 
+export type ArtifactKind = "own" | "contribution";
+
 export type Artifact = {
   code: string;
   title: string;
@@ -194,18 +194,23 @@ export type Artifact = {
   stack: string;
   summary: string;
   href: string;
+  kind: ArtifactKind;
 };
 
+export function artifactActionLabel(kind: ArtifactKind): string {
+  switch (kind) {
+    case "own":
+      return "Open on GitHub";
+    case "contribution":
+      return "View contribution";
+    default: {
+      const _exhaustive: never = kind;
+      return _exhaustive;
+    }
+  }
+}
+
 export const artifacts: Artifact[] = [
-  {
-    code: "SAST",
-    title: "sast_blame",
-    year: "2025",
-    stack: "Python · Semgrep · GitHub / GitLab",
-    summary:
-      "Route a static finding to the person who wrote the line. Ties Semgrep output to git blame so pipeline noise becomes an owner, not a ticket graveyard.",
-    href: "https://github.com/hackarada/sast_blame",
-  },
   {
     code: "LOC",
     title: "blueear",
@@ -214,6 +219,7 @@ export const artifacts: Artifact[] = [
     summary:
       "Local-first capture for Teams and Zoom. Isolated meeting audio, optional mic, synchronized WAVs. Nothing is uploaded — a small study in keeping sensitive signal on-device.",
     href: "https://github.com/hackarada/blueear",
+    kind: "own",
   },
   {
     code: "RES",
@@ -223,6 +229,17 @@ export const artifacts: Artifact[] = [
     summary:
       "Unattended helper for Word 2007 dialogs during fuzzing campaigns. Research tooling: keep the loop running when the target tries to stop for a popup.",
     href: "https://github.com/hackarada/OfficeClick4Me",
+    kind: "own",
+  },
+  {
+    code: "MCP",
+    title: "mcp-use",
+    year: "2025",
+    stack: "Python · MCP · agents",
+    summary:
+      "Open-source library for connecting agents to MCP servers. I contributed a fix for double async cleanup in streaming so generators do not tear down the event loop twice.",
+    href: "https://github.com/mcp-use/mcp-use",
+    kind: "contribution",
   },
 ];
 
