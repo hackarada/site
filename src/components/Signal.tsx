@@ -2,7 +2,7 @@ import { profile, signals } from "@/data/content";
 
 export function Signal() {
   return (
-    <section id="signal" className="relative scroll-mt-8 scroll-mb-28 px-6 pt-24 pb-44 sm:px-10 lg:px-16">
+    <section id="signal" className="relative scroll-mt-8 px-6 pt-24 pb-24 sm:px-10 lg:px-16">
       <div className="mx-auto grid w-full max-w-6xl gap-14 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
           <p className="font-mono text-[11px] tracking-[0.28em] text-phosphor uppercase">

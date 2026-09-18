@@ -2,7 +2,7 @@ import { productions } from "@/data/content";
 
 export function Work() {
   return (
-    <section id="work" className="relative scroll-mt-8 scroll-mb-28 px-6 py-24 sm:px-10 lg:px-16">
+    <section id="work" className="relative scroll-mt-8 px-6 py-24 sm:px-10 lg:px-16">
       <div className="mx-auto w-full max-w-6xl">
         <p className="font-mono text-[11px] tracking-[0.28em] text-phosphor uppercase">
           04  /  Productions

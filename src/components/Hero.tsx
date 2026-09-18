@@ -9,7 +9,7 @@ export function Hero({ onWork, onSignal }: HeroProps) {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen scroll-mt-8 scroll-mb-28 items-center overflow-hidden px-6 pb-40 pt-24 sm:px-10 lg:px-16"
+      className="relative flex min-h-screen scroll-mt-8 items-center overflow-hidden px-6 pb-24 pt-24 sm:px-10 lg:px-16"
     >
       <div className="construct-floor" />
       <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-12 lg:grid-cols-[1.4fr_0.8fr] lg:items-end">

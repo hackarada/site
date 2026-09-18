@@ -59,7 +59,7 @@ export default function App() {
       <div className="vignette" />
       <div className="grain" />
       <Letterbox />
-      <main className="relative z-10">
+      <main className="relative z-10 pl-[3.75rem] md:pl-[12.75rem]">
         <Hero onWork={() => goTo("work")} onSignal={() => goTo("signal")} />
         <About />
         <Craft />

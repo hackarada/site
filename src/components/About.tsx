@@ -2,7 +2,7 @@ import { about, stack } from "@/data/content";
 
 export function About() {
   return (
-    <section id="about" className="relative scroll-mt-8 scroll-mb-28 px-6 py-28 sm:px-10 lg:px-16">
+    <section id="about" className="relative scroll-mt-8 px-6 py-28 sm:px-10 lg:px-16">
       <div className="mx-auto grid w-full max-w-6xl gap-14 lg:grid-cols-[0.9fr_1.2fr]">
         <div>
           <p className="font-mono text-[11px] tracking-[0.28em] text-phosphor uppercase">

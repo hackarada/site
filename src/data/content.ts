@@ -37,9 +37,9 @@ export function sectionLabel(id: SectionId): string {
 }
 
 export const profile = {
-  name: "Ermias Bayu",
+  name: "Ermias W.",
   first: "Ermias",
-  last: "Bayu",
+  last: "W.",
   role: "Senior Staff Security Engineer",
   studio: "Disney Studios · Content Security",
   location: "Los Angeles",

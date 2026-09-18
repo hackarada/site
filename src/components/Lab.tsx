@@ -2,7 +2,7 @@ import { artifactActionLabel, artifacts } from "@/data/content";
 
 export function Lab() {
   return (
-    <section id="lab" className="relative scroll-mt-8 scroll-mb-28 px-6 py-24 sm:px-10 lg:px-16">
+    <section id="lab" className="relative scroll-mt-8 px-6 py-24 sm:px-10 lg:px-16">
       <div className="mx-auto w-full max-w-6xl">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>

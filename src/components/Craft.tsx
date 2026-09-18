@@ -2,7 +2,7 @@ import { craft } from "@/data/content";
 
 export function Craft() {
   return (
-    <section id="craft" className="relative scroll-mt-8 scroll-mb-28 px-6 py-24 sm:px-10 lg:px-16">
+    <section id="craft" className="relative scroll-mt-8 px-6 py-24 sm:px-10 lg:px-16">
       <div className="mx-auto w-full max-w-6xl">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
