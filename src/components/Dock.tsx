@@ -11,7 +11,7 @@ export function Dock({ active, onNavigate }: DockProps) {
       aria-label="Primary"
       className="fixed top-1/2 left-3 z-[70] -translate-y-1/2 md:left-5"
     >
-      <div className="flex flex-col gap-0.5 rounded-3xl border border-line bg-void/80 p-1.5 shadow-glow backdrop-blur-xl md:min-w-[10.25rem] md:p-2">
+      <div className="flex flex-col gap-0.5 rounded-3xl border border-line bg-panel/90 p-1.5 shadow-glow backdrop-blur-xl md:min-w-[10.25rem] md:p-2">
         {navItems.map((item) => {
           const isActive = item.id === active;
           return (

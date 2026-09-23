@@ -12,7 +12,7 @@ export function Hero({ onWork, onSignal }: HeroProps) {
       className="relative flex min-h-screen scroll-mt-8 items-center overflow-hidden px-6 pb-24 pt-24 sm:px-10 lg:px-16"
     >
       <div className="construct-floor" />
-      <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-12 lg:grid-cols-[1.4fr_0.8fr] lg:items-end">
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-12 xl:grid-cols-[1.4fr_minmax(16rem,0.8fr)] xl:items-end">
         <div className="fade-up">
           <p className="font-mono text-[11px] tracking-[0.32em] text-tungsten uppercase">
             Prod. / Security / {profile.location}
@@ -45,7 +45,7 @@ export function Hero({ onWork, onSignal }: HeroProps) {
           </div>
         </div>
 
-        <aside className="fade-up min-w-0 border border-line bg-panel/70 p-6 backdrop-blur-md lg:mb-4">
+        <aside className="fade-up min-w-0 border border-line bg-panel/80 p-6 backdrop-blur-md xl:mb-4">
           <p className="font-mono text-[10px] tracking-[0.28em] text-phosphor uppercase">
             Now rolling
           </p>

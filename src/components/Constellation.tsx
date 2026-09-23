@@ -73,8 +73,8 @@ export function Constellation() {
           const dy = a.y - b.y;
           const dist = Math.hypot(dx, dy);
           if (dist < 160) {
-            const alpha = (1 - dist / 160) * 0.18;
-            context.strokeStyle = `rgba(140, 255, 154, ${alpha})`;
+            const alpha = (1 - dist / 160) * 0.22;
+            context.strokeStyle = `rgba(21, 122, 54, ${alpha})`;
             context.lineWidth = 1;
             context.beginPath();
             context.moveTo(a.x, a.y);
@@ -85,7 +85,7 @@ export function Constellation() {
       }
 
       for (const node of nodes) {
-        context.fillStyle = "rgba(215, 180, 138, 0.55)";
+        context.fillStyle = "rgba(138, 98, 56, 0.55)";
         context.beginPath();
         context.arc(node.x, node.y, 1.4, 0, Math.PI * 2);
         context.fill();
@@ -109,7 +109,7 @@ export function Constellation() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-[1] opacity-70"
+      className="pointer-events-none fixed inset-0 z-[1] opacity-50"
     />
   );
 }
