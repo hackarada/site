@@ -5,7 +5,7 @@ export function Work() {
     <section id="work" className="relative scroll-mt-8 px-6 py-24 sm:px-10 lg:px-16">
       <div className="mx-auto w-full max-w-6xl">
         <p className="font-mono text-[11px] tracking-[0.28em] text-phosphor uppercase">
-          04  /  Productions
+          05  /  Productions
         </p>
         <h2 className="mt-4 max-w-3xl font-display text-4xl font-bold tracking-tight text-silver sm:text-5xl">
           Credits from the studio, the cloud, and the red team.

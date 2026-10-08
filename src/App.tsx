@@ -1,55 +1,97 @@
-import { useEffect, useState } from "react";
-import { About } from "@/components/About";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { Constellation } from "@/components/Constellation";
-import { Craft } from "@/components/Craft";
 import { Dock } from "@/components/Dock";
-import { Hero } from "@/components/Hero";
-import { Lab } from "@/components/Lab";
+import { Home } from "@/components/Home";
 import { Letterbox } from "@/components/Letterbox";
 import { MatrixField } from "@/components/MatrixField";
-import { Signal } from "@/components/Signal";
-import { Work } from "@/components/Work";
-import { navItems, type SectionId } from "@/data/content";
+import { MissingNote, NotePage } from "@/components/NotePage";
+import { isSectionId, type SectionId } from "@/data/content";
+import { findNote } from "@/data/notes";
+import { noteSlugFromPath, useRoute } from "@/lib/route";
 
-function isSectionId(value: string): value is SectionId {
-  return navItems.some((item) => item.id === value);
+function activeFromLocation(path: string, hash: string): SectionId {
+  if (path.startsWith("/notes")) {
+    return "notes";
+  }
+  if (isSectionId(hash)) {
+    return hash;
+  }
+  return "home";
+}
+
+function withoutSmoothScroll(scroll: () => void) {
+  const root = document.documentElement;
+  const previous = root.style.scrollBehavior;
+  root.style.scrollBehavior = "auto";
+  scroll();
+  root.style.scrollBehavior = previous;
+}
+
+function scrollToTopInstant() {
+  withoutSmoothScroll(() => {
+    window.scrollTo({ top: 0 });
+  });
 }
 
 export default function App() {
-  const [active, setActive] = useState<SectionId>("home");
+  const { path, hash, go } = useRoute();
+  const noteSlug = noteSlugFromPath(path);
+  const note = noteSlug ? findNote(noteSlug) : undefined;
+  const onArticle = noteSlug !== null;
+  const [active, setActive] = useState<SectionId>(() => activeFromLocation(path, hash));
 
   useEffect(() => {
-    const sections = navItems
-      .map((item) => document.getElementById(item.id))
-      .filter((node): node is HTMLElement => node !== null);
+    setActive(activeFromLocation(path, hash));
+  }, [path, hash]);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target.id && isSectionId(visible.target.id)) {
-          setActive(visible.target.id);
-        }
-      },
-      { threshold: [0.25, 0.45, 0.7], rootMargin: "-20% 0px -35% 0px" },
-    );
-
-    for (const section of sections) {
-      observer.observe(section);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  const goTo = (id: SectionId) => {
-    const node = document.getElementById(id);
-    if (!node) {
+  useEffect(() => {
+    if (note) {
+      document.title = `${note.title} | Ermias W.`;
       return;
     }
-    const top = window.scrollY + node.getBoundingClientRect().top;
-    window.scrollTo({ top, behavior: "smooth" });
-    setActive(id);
+    if (onArticle) {
+      document.title = "Note | Ermias W.";
+      return;
+    }
+    document.title = "Ermias W. | Security Architecture";
+  }, [note, onArticle]);
+
+  useLayoutEffect(() => {
+    if (onArticle) {
+      const heading = hash ? document.getElementById(hash) : null;
+      if (heading) {
+        withoutSmoothScroll(() => {
+          heading.scrollIntoView();
+        });
+        return;
+      }
+      scrollToTopInstant();
+      return;
+    }
+    const section = path === "/notes" ? "notes" : hash;
+    if (section && isSectionId(section)) {
+      document.getElementById(section)?.scrollIntoView();
+      return;
+    }
+    scrollToTopInstant();
+  }, [onArticle, path, hash]);
+
+  const goTo = (id: SectionId) => {
+    const targetHash = id === "home" ? "" : id;
+    const alreadyHere = !onArticle && (path === "/" || path === "/notes") && hash === targetHash;
+    go(id === "home" ? "/" : `/#${id}`);
+    if (!alreadyHere) {
+      return;
+    }
+    if (id === "home") {
+      scrollToTopInstant();
+      return;
+    }
+    document.getElementById(id)?.scrollIntoView();
+  };
+
+  const openNote = (slug: string) => {
+    go(`/notes/${slug}`);
   };
 
   return (
@@ -59,14 +101,15 @@ export default function App() {
       <div className="vignette" />
       <div className="grain" />
       <Letterbox />
-      <main className="relative z-10 pl-[3.75rem] md:pl-[12.75rem]">
-        <Hero onWork={() => goTo("work")} onSignal={() => goTo("signal")} />
-        <About />
-        <Craft />
-        <Lab />
-        <Work />
-        <Signal />
-      </main>
+      {onArticle ? (
+        note ? (
+          <NotePage note={note} onBack={() => go("/#notes")} />
+        ) : (
+          <MissingNote onBack={() => go("/#notes")} />
+        )
+      ) : (
+        <Home onNavigate={goTo} onOpenNote={openNote} setActive={setActive} />
+      )}
       <Dock active={active} onNavigate={goTo} />
     </div>
   );

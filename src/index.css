@@ -5,23 +5,23 @@
   --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
 
-  --color-void: #f7f8f5;
-  --color-ink: #ffffff;
-  --color-panel: #ffffff;
-  --color-line: rgba(20, 42, 26, 0.16);
-  --color-phosphor: #157a36;
+  --color-void: #000000;
+  --color-ink: #0a0c0a;
+  --color-panel: #0e100e;
+  --color-line: rgba(242, 244, 240, 0.16);
+  --color-phosphor: #2faf58;
   --color-phosphor-dim: #2f6a3d;
-  --color-tungsten: #8a6238;
-  --color-silver: #141814;
-  --color-mist: #3f4740;
-  --color-ash: #5c655e;
+  --color-tungsten: #c9956a;
+  --color-silver: #f2f4f0;
+  --color-mist: #c5cdc6;
+  --color-ash: #9aa39b;
 
-  --shadow-glow: 0 12px 40px rgba(20, 24, 20, 0.08);
+  --shadow-glow: 0 12px 40px rgba(0, 0, 0, 0.45);
 }
 
 html {
   scroll-behavior: smooth;
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 body {
@@ -34,8 +34,8 @@ body {
 }
 
 ::selection {
-  background: rgba(21, 122, 54, 0.18);
-  color: #0b1a10;
+  background: rgba(47, 175, 88, 0.35);
+  color: #f2f4f0;
 }
 
 .grain {
@@ -43,8 +43,8 @@ body {
   position: fixed;
   inset: 0;
   z-index: 40;
-  opacity: 0.045;
-  mix-blend-mode: multiply;
+  opacity: 0.18;
+  mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -53,9 +53,7 @@ body {
   position: fixed;
   inset: 0;
   z-index: 30;
-  background:
-    radial-gradient(ellipse at center, transparent 55%, rgba(20, 24, 20, 0.05) 100%),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.55), transparent 16%, transparent 84%, rgba(20, 24, 20, 0.04));
+  background: radial-gradient(ellipse at center, transparent 48%, rgba(0, 0, 0, 0.55) 100%);
 }
 
 .letterbox {
@@ -65,8 +63,8 @@ body {
   right: 0;
   height: 18px;
   z-index: 50;
-  background: var(--color-void);
-  box-shadow: inset 0 -1px 0 var(--color-line);
+  background: #f7f8f5;
+  box-shadow: inset 0 -1px 0 rgba(20, 42, 26, 0.16);
 }
 
 .construct-floor {

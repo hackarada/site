@@ -1,4 +1,4 @@
-export type SectionId = "home" | "about" | "craft" | "lab" | "work" | "signal";
+export type SectionId = "home" | "about" | "craft" | "lab" | "notes" | "work" | "signal";
 
 export type NavItem = {
   id: SectionId;
@@ -11,9 +11,14 @@ export const navItems: NavItem[] = [
   { id: "about", label: "Construct", short: "01" },
   { id: "craft", label: "Surfaces", short: "02" },
   { id: "lab", label: "Lab", short: "03" },
-  { id: "work", label: "Productions", short: "04" },
-  { id: "signal", label: "Channel", short: "05" },
+  { id: "notes", label: "Notes", short: "04" },
+  { id: "work", label: "Productions", short: "05" },
+  { id: "signal", label: "Channel", short: "06" },
 ];
+
+export function isSectionId(value: string): value is SectionId {
+  return navItems.some((item) => item.id === value);
+}
 
 export function sectionLabel(id: SectionId): string {
   switch (id) {
@@ -25,6 +30,8 @@ export function sectionLabel(id: SectionId): string {
       return "Surfaces";
     case "lab":
       return "Lab";
+    case "notes":
+      return "Notes";
     case "work":
       return "Productions";
     case "signal":
@@ -243,7 +250,15 @@ export const artifacts: Artifact[] = [
   },
 ];
 
-export const signals = [
+export type Signal = {
+  kind: string;
+  title: string;
+  place: string;
+  note: string;
+  noteSlug?: string;
+};
+
+export const signals: Signal[] = [
   {
     kind: "Talk",
     title: "The Journey to Zero Trust and Adoption of AI",
@@ -261,6 +276,7 @@ export const signals = [
     title: "AWS Security Specialty · CCZT · Black Hat AI Red Teaming",
     place: "Continuing craft",
     note: "Cloud architecture, Zero Trust, and adversarial testing against modern AI systems.",
+    noteSlug: "ai-red-teaming",
   },
 ];
 

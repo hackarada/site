@@ -1,12 +1,17 @@
 import { profile, signals } from "@/data/content";
+import { appHref, isModifiedClick } from "@/lib/route";
 
-export function Signal() {
+type SignalProps = {
+  onOpenNote: (slug: string) => void;
+};
+
+export function Signal({ onOpenNote }: SignalProps) {
   return (
     <section id="signal" className="relative scroll-mt-8 px-6 pt-24 pb-24 sm:px-10 lg:px-16">
       <div className="mx-auto grid w-full max-w-6xl gap-14 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
           <p className="font-mono text-[11px] tracking-[0.28em] text-phosphor uppercase">
-            05  /  Channel
+            06  /  Channel
           </p>
           <h2 className="mt-4 font-display text-4xl font-bold tracking-tight text-silver sm:text-5xl">
             Ready when the next scene needs a security architect.
@@ -40,16 +45,34 @@ export function Signal() {
         </div>
 
         <div className="space-y-4">
-          {signals.map((item) => (
-            <article key={item.title} className="border border-line bg-panel/50 p-6">
-              <p className="font-mono text-[10px] tracking-[0.24em] text-tungsten uppercase">
-                {item.kind}
-              </p>
-              <h3 className="mt-3 font-display text-xl font-bold text-silver">{item.title}</h3>
-              <p className="mt-1 text-sm text-phosphor">{item.place}</p>
-              <p className="mt-3 text-sm leading-relaxed text-mist">{item.note}</p>
-            </article>
-          ))}
+          {signals.map((item) => {
+            const slug = item.noteSlug;
+            return (
+              <article key={item.title} className="border border-line bg-panel/50 p-6">
+                <p className="font-mono text-[10px] tracking-[0.24em] text-tungsten uppercase">
+                  {item.kind}
+                </p>
+                <h3 className="mt-3 font-display text-xl font-bold text-silver">{item.title}</h3>
+                <p className="mt-1 text-sm text-phosphor">{item.place}</p>
+                <p className="mt-3 text-sm leading-relaxed text-mist">{item.note}</p>
+                {slug ? (
+                  <a
+                    href={appHref(`/notes/${slug}`)}
+                    onClick={(event) => {
+                      if (isModifiedClick(event)) {
+                        return;
+                      }
+                      event.preventDefault();
+                      onOpenNote(slug);
+                    }}
+                    className="mt-4 inline-block font-mono text-[11px] tracking-[0.18em] text-phosphor uppercase"
+                  >
+                    Read the note
+                  </a>
+                ) : null}
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
